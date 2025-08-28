@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: mdc-tester
+
+logging:
+  level:
+    root: INFO
+    com.mdc.tester: INFO
