@@ -29,30 +29,64 @@ public class PropConfig {
             () -> MDC.remove("path")
         );
         ContextRegistry.getInstance().registerThreadLocalAccessor(
-            "traceId",
-            () -> MDC.get("traceId"),
-            (path) -> {
-                logger.debug("Setting MDC context map: {}", path);
-                if (path == null) {
-                    logger.debug("MDC context map is null");
+            "host",
+            () -> MDC.get("host"),
+            (host) -> {
+                logger.debug("Setting MDC context map host: {}", host);
+                if (host == null) {
+                    logger.debug("MDC context map host is null");
                     return;
                 }
-                MDC.put("traceId", path);
+                MDC.put("host", host);
             },
-            () -> MDC.remove("traceId")
+            () -> MDC.remove("host")
         );
         ContextRegistry.getInstance().registerThreadLocalAccessor(
-            "spanId",
-            () -> MDC.get("spanId"),
-            (path) -> {
-                logger.debug("Setting MDC context map: {}", path);
-                if (path == null) {
-                    logger.debug("MDC context map is null");
+            "method",
+            () -> MDC.get("method"),
+            (method) -> {
+                logger.debug("Setting MDC context map method: {}", method);
+                if (method == null) {
+                    logger.debug("MDC context map method is null");
                     return;
                 }
-                MDC.put("spanId", path);
+                MDC.put("method", method);
             },
-            () -> MDC.remove("spanId")
+            () -> MDC.remove("method")
         );
+        // ContextRegistry.getInstance().registerThreadLocalAccessor(
+        //     "traceId",
+        //     () -> {
+        //         String traceId = MDC.get("traceId");
+        //         logger.info("Getting MDC context map traceId: {}", traceId);
+        //         return traceId;
+        //     },
+        //     (traceId) -> {
+        //         logger.debug("Setting MDC context map traceId: {}", traceId);
+        //         if (traceId == null) {
+        //             logger.debug("MDC context map traceId is null");
+        //             return;
+        //         }
+        //         MDC.put("traceId", traceId);
+        //     },
+        //     () -> MDC.remove("traceId")
+        // );
+        // ContextRegistry.getInstance().registerThreadLocalAccessor(
+        //     "spanId",
+        //     () -> {
+        //         String spanId = MDC.get("spanId");
+        //         logger.info("Getting MDC context map spanId: {}", spanId);
+        //         return spanId;
+        //     },
+        //     (spanId) -> {
+        //         logger.debug("Setting MDC context map: {}", spanId);
+        //         if (spanId == null) {
+        //             logger.debug("MDC context map is null");
+        //             return;
+        //         }
+        //         MDC.put("spanId", spanId);
+        //     },
+        //     () -> MDC.remove("spanId")
+        // );
     }
 }
